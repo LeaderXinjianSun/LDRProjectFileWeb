@@ -1,2 +1,2 @@
 # LDRProjectFileWeb
-A File store system from the company use Dotnet core.
+A File store system for the company use Dotnet core.
