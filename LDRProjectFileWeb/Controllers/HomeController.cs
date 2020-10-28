@@ -21,7 +21,6 @@ namespace LDRProjectFileWeb.Controllers
             IEnumerable<Project> projects = _projectRepository.GetAllProjects();
 
             return View(projects);
-
         }
         [HttpGet]
         public ViewResult Create()

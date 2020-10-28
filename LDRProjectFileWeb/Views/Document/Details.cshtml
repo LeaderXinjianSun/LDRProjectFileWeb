@@ -1,0 +1,29 @@
+﻿@model DocumentDetailsViewModel
+@{
+
+    ViewBag.Title = Model.PageTitle;
+
+}
+    <div class="table-responsive-sm">
+        @using Microsoft.AspNetCore.Identity
+        @inject SignInManager<IdentityUser> SignInManager
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">文件名</th>
+                    <th scope="col">上传日期</th>
+                    <th scope="col">文件大小</th>
+                    <th scope="col">上传人</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var document in Model.Documents)
+                {
+                    <tr>
+                        <td scope="row">@document.ProjectID</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

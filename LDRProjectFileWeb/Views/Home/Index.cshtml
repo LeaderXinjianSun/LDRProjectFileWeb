@@ -22,7 +22,9 @@
                 @foreach (var project in Model)
                 {
                 <tr>
-                    <td scope="row">@project.ProjectID</td>
+                    <td scope="row">
+                        <a class="btn-link" asp-controller="document" asp-action="details" asp-route-id="@project.ProjectID">@project.ProjectID</a>
+                    </td>
                     <td>@project.Name</td>
                     <td>@project.Designer</td>
                     <td>@project.Engineer</td>
@@ -33,7 +35,6 @@
                     </td>
                     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
-
                         <td>
                             <a asp-controller="home" asp-action="delete" asp-route-id="@project.Id" class="btn btn-danger m-1">删除</a>
                         </td>

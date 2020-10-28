@@ -59,6 +59,7 @@ options => options.UseMySql(_configuration.GetConnectionString("DefaultConnectio
 
 
             services.AddScoped<IProjectRepository, SQLProjectRepository>();
+            services.AddScoped<IDocumentRepository, SQLDocumentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

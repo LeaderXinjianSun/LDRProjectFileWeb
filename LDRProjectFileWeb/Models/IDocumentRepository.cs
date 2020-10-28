@@ -5,36 +5,36 @@ using System.Threading.Tasks;
 
 namespace LDRProjectFileWeb.Models
 {
-    public interface IProjectRepository
+    public interface IDocumentRepository
     {
         /// <summary>
-        /// 通过 Id 来获取项目信息
+        /// 通过 Id 来获取文件信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Project GetProject(int id);
+        Document GetDocument(int id);
         /// <summary>
-        /// 获取所有的项目信息
+        /// 获取项目的文件信息
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Project> GetAllProjects();
+        IEnumerable<Document> GetAllDocuments();
         /// <summary>
-        /// 添加一个新的项目信息
+        /// 添加一个新的文件信息
         /// </summary>
-        /// <param name="project"></param>
+        /// <param name="document"></param>
         /// <returns></returns>
-        Project Add(Project project);
+        Document Add(Document document);
         /// <summary>
-        /// 更新一个项目的信息
+        /// 更新一个文件的信息
         /// </summary>
-        /// <param name="updateProject"></param>
+        /// <param name="updateDocument"></param>
         /// <returns></returns>
-        Project Update(Project updateProject);
+        Document Update(Document updateDocument);
         /// <summary>
-        /// 删除一个项目的信息
+        /// 删除一个文件的信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Project Delete(int id);
+        Document Delete(int id);
     }
 }
