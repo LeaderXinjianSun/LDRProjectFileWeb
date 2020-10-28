@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LDRProjectFileWeb.Middlewares;
 using LDRProjectFileWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,9 +32,32 @@ namespace LDRProjectFileWeb
             services.AddDbContextPool<AppDbContext>(
 options => options.UseMySql(_configuration.GetConnectionString("DefaultConnection"))
 );
-            services.AddControllersWithViews();
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
-            services.AddMvc();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                //  options.Password.RequiredUniqueChars = 3;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+
+            });
+
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+   .AddErrorDescriber<CustomIdentityErrorDescriber>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
+
+            services.AddMvc(config =>
+            {
+
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+
+
+            }).AddXmlSerializerFormatters();
+
+
             services.AddScoped<IProjectRepository, SQLProjectRepository>();
         }
 
@@ -48,6 +74,8 @@ options => options.UseMySql(_configuration.GetConnectionString("DefaultConnectio
             app.UseAuthentication();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

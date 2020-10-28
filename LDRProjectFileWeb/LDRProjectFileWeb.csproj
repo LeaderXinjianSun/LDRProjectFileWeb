@@ -15,7 +15,11 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="wwwroot\css\" />
+    <Folder Include="Middlewares\" />
+    <Folder Include="CustomerUtil\" />
   </ItemGroup>
 
 </Project>
