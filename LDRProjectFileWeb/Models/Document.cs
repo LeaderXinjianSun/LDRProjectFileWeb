@@ -10,6 +10,11 @@ namespace LDRProjectFileWeb.Models
     {
         public int Id { get; set; }
         [Required]
+        public string FilePath { get; set; }
+        public string FileName { get; set; }
+        [Required]
+        public string FileSize { get; set; }
+        [Required]
         public string ProjectID { get; set; }
         [Required]
         [Display(Name = "上传时间")]

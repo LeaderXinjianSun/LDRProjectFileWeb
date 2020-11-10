@@ -19,6 +19,7 @@
     <Folder Include="wwwroot\css\" />
     <Folder Include="Middlewares\" />
     <Folder Include="CustomerUtil\" />
+    <Folder Include="wwwroot\files\" />
   </ItemGroup>
 
 </Project>

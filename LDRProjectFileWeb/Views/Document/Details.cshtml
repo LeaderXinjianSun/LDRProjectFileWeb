@@ -1,29 +1,39 @@
 ﻿@model DocumentDetailsViewModel
 @{
-
     ViewBag.Title = Model.PageTitle;
-
 }
-    <div class="table-responsive-sm">
-        @using Microsoft.AspNetCore.Identity
-        @inject SignInManager<IdentityUser> SignInManager
+<div class="table-responsive-sm">
+    @using Microsoft.AspNetCore.Identity
+    @inject SignInManager<IdentityUser> SignInManager
+    <h1>@Model.ProjectID</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col">文件名</th>
+                <th scope="col">上传日期</th>
+                <th scope="col">文件大小</th>
+                <th scope="col">上传人</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var document in Model.Documents)
+            {
 
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">文件名</th>
-                    <th scope="col">上传日期</th>
-                    <th scope="col">文件大小</th>
-                    <th scope="col">上传人</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var document in Model.Documents)
+            <tr>
+                <td scope="row">@document.FileName</td>
+                <td>@document.UploadDate</td>
+                <td>@document.FileSize</td>
+                <td>@document.Uploader</td>
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
-                    <tr>
-                        <td scope="row">@document.ProjectID</td>
-                    </tr>
+                    <td>
+                        <a asp-controller="document" asp-action="delete" asp-route-id="@document.Id" class="btn btn-danger m-1">删除</a>
+                    </td>
                 }
-            </tbody>
-        </table>
-    </div>
+            </tr>
+
+            }
+        </tbody>
+    </table>
+    <a asp-controller="document" asp-action="create" asp-route-id="@Model.ProjectID" class="btn btn-primary m-1">添加</a>
+</div>
