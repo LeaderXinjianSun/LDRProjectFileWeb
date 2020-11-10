@@ -3,6 +3,7 @@ using LDRProjectFileWeb.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -107,6 +108,15 @@ namespace LDRProjectFileWeb.Controllers
                 return RedirectToAction("Details",new { id = projectid });
             }
             return View();
+        }
+        [HttpGet]
+        public IActionResult DownloadFile(int id)
+        {
+            var dc = _documentRepository.GetDocument(id);
+            if (dc == null) return NotFound();
+            string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "files");
+            string filePath = Path.Combine(uploadsFolder, dc.FilePath);
+            return PhysicalFile(filePath, MimeTypes.GetMimeType(filePath), dc.FileName);
         }
     }
 }

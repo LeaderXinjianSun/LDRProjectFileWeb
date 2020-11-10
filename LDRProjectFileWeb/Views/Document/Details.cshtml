@@ -20,7 +20,9 @@
             {
 
             <tr>
-                <td scope="row">@document.FileName</td>
+                <td scope="row">
+                    <a class="btn-link" asp-controller="document" asp-action="DownloadFile" asp-route-id="@document.Id">@document.FileName</a>
+                </td>
                 <td>@document.UploadDate</td>
                 <td>@document.FileSize</td>
                 <td>@document.Uploader</td>
