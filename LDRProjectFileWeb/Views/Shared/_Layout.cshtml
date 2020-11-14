@@ -87,8 +87,25 @@
             </div>
 
         </nav>
+
         @RenderBody()
+        <footer class="modal-footer bg-light">
+            <div class="col-md-3 mb-md-0 mb-3">
+                <h5 class="text-uppercase">网站备案号:</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="http://beian.miit.gov.cn">苏ICP备2020063360号-1</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+            <a href="http://www.jsleadercollege.cn/"> jsleadercollege.cn</a>
+        </div>
+
     </div>
+
     <script src="~/lib/jquery/jquery.js" asp-append-version="true"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
