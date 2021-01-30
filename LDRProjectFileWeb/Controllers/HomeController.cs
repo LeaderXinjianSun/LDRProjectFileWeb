@@ -117,5 +117,86 @@ namespace LDRProjectFileWeb.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public ViewResult WorkManage()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult WorkManage(ProjectImageCreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.File != null && model.File.FileName.Contains(".jpg"))
+                {
+                    //必须将图像上传到wwwroot中的images文件夹
+                    //而要获取wwwroot文件夹的路径，我们需要注入 ASP.NET Core提供的HostingEnvironment服务
+                    //通过HostingEnvironment服务去获取wwwroot文件夹的路径
+                    string uploadsFolder = _hostingEnvironment.WebRootPath;
+                    string filePath = Path.Combine(uploadsFolder, "WorkManage.jpg");
+                    //因为使用了非托管资源，所以需要手动进行释放
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        //使用IFormFile接口提供的CopyTo()方法将文件复制到wwwroot/images文件夹
+                        model.File.CopyTo(fileStream);
+                    }
+                }
+            }
+            return View();
+        }
+        [HttpGet]
+        public ViewResult OrganizationStructure()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult OrganizationStructure(ProjectImageCreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.File != null && model.File.FileName.Contains(".jpg"))
+                {
+                    //必须将图像上传到wwwroot中的images文件夹
+                    //而要获取wwwroot文件夹的路径，我们需要注入 ASP.NET Core提供的HostingEnvironment服务
+                    //通过HostingEnvironment服务去获取wwwroot文件夹的路径
+                    string uploadsFolder = _hostingEnvironment.WebRootPath;
+                    string filePath = Path.Combine(uploadsFolder, "OrganizationStructure.jpg");
+                    //因为使用了非托管资源，所以需要手动进行释放
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        //使用IFormFile接口提供的CopyTo()方法将文件复制到wwwroot/images文件夹
+                        model.File.CopyTo(fileStream);
+                    }
+                }
+            }
+            return View();
+        }
+        [HttpGet]
+        public ViewResult CapabilityMatrix()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CapabilityMatrix(ProjectImageCreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.File != null && model.File.FileName.Contains(".jpg"))
+                {
+                    //必须将图像上传到wwwroot中的images文件夹
+                    //而要获取wwwroot文件夹的路径，我们需要注入 ASP.NET Core提供的HostingEnvironment服务
+                    //通过HostingEnvironment服务去获取wwwroot文件夹的路径
+                    string uploadsFolder = _hostingEnvironment.WebRootPath;
+                    string filePath = Path.Combine(uploadsFolder, "CapabilityMatrix.jpg");
+                    //因为使用了非托管资源，所以需要手动进行释放
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        //使用IFormFile接口提供的CopyTo()方法将文件复制到wwwroot/images文件夹
+                        model.File.CopyTo(fileStream);
+                    }
+                }
+            }
+            return View();
+        }
     }
 }

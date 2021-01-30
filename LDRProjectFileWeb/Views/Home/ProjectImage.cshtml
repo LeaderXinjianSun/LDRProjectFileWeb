@@ -11,7 +11,7 @@
 
             @using Microsoft.AspNetCore.Identity
             @inject SignInManager<IdentityUser> SignInManager
-            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Asst")))
             {
                 <div class="card-footer text-center">
                     <form enctype="multipart/form-data" asp-controller="home" asp-action="projectimage" method="post" class="mt-3">

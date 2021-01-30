@@ -40,19 +40,29 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="home" asp-action="Create">添加项目</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="home" asp-action="ProjectImage">项目图示</a>
-                    </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+          
+                        <li class="nav-item dropdown">
+
+                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">研发部</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-controller="home" asp-action="ProjectImage">项目图示</a>
+                                <a class="dropdown-item" asp-controller="home" asp-action="WorkManage">工作管理</a>
+                                <a class="dropdown-item" asp-controller="home" asp-action="OrganizationStructure">组织构架</a>
+                                <a class="dropdown-item" asp-controller="home" asp-action="CapabilityMatrix">能力矩阵</a>
+                            </div>
+
+
+                        </li>
+                    }
                     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
-
-
 
                         <li class="nav-item dropdown">
 
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">管理</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
                                 <a class="dropdown-item" asp-controller="Admin" asp-action="ListRoles">角色列表</a>
                                 <a class="dropdown-item" asp-controller="Admin" asp-action="ListUsers">用户列表</a>
                             </div>
